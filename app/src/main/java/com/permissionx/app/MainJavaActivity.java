@@ -2,11 +2,11 @@ package com.permissionx.app;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.permissionx.guolindev.PermissionX;
 import com.permissionx.guolindev.callback.ExplainReasonCallbackWithBeforeParam;
@@ -17,7 +17,7 @@ import com.permissionx.guolindev.request.ForwardScope;
 
 import java.util.List;
 
-public class MainJavaActivity extends AppCompatActivity {
+public class MainJavaActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class MainJavaActivity extends AppCompatActivity {
                                 scope.showForwardToSettingsDialog(deniedList, "您需要去应用程序设置当中手动开启权限" + deniedList, "我已明白");
                             }
                         })
+                        .explainReasonBeforeRequest()
                         .request(new RequestCallback() {
                             @Override
                             public void onResult(boolean allGranted, List<String> grantedList, List<String> deniedList) {
